@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+<style>
+body {
+background-color:black;
+}
+</style>
+</head>
+<body>
+<canvas id="game" width="400" height="300"></canvas>
+<script>
+//just a little dumb canvas test since i dont know how to use this yet
+const canvas = document.getElementById("game");
+const ctx = canvas.getContext("2d");
+
+let x = 200;
+let y = 150;
+let dx = 2;
+let dy = 1.5;
+var a=0
+
+function update() {
+  x += dx;
+  y += dy;
+
+  // bounce
+  if (x < 0 || x > canvas.width) dx *= -1;
+  if (y < 0 || y > canvas.height) dy *= -1;
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.beginPath();
+  if (a<canvas.width) {
+  a+=1;}
+  if (a==canvas.width){
+  ctx.font = "30px Arial";
+  ctx.fillStyle = "black";
+  ctx.fillText("Done", 50, 100);
+
+  }
+  ctx.rect(0,0,a,30)
+  ctx.fill();
+  ctx.fillStyle = "blue";
+  
+
+}
+
+function loop() {
+  update();
+  draw();
+  requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+
+</body>
+</html>
+
+
